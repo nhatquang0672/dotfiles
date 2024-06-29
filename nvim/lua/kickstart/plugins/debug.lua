@@ -41,7 +41,7 @@ return {
       -- online, please don't ask me how to install them :)
       ensure_installed = {
         -- Update this to ensure that you have the debuggers for the langs you want
-        'delve',
+        'delve', 'js-debug-adapter'
       },
     }
 
@@ -92,5 +92,50 @@ return {
         detached = vim.fn.has 'win32' == 0,
       },
     }
+dap.adapters["pwa-node"] = {
+    type = "server",
+    host = "localhost",
+    port = "${port}",
+    executable = {
+        command = vim.fn.exepath "js-debug-adapter",
+        args = { "${port}" },
+    },
+}
+
+for _, language in ipairs { "typescript", "javascript" } do
+    dap.configurations[language] = {
+        {
+            type = "pwa-node",
+            request = "launch",
+            name = "[node] Launch file",
+            program = "${file}",
+            cwd = "${workspaceFolder}",
+        },
+        {
+            type = "pwa-node",
+            request = "launch",
+            name = "[node] Launch debug shop service",
+            cwd = "${workspaceFolder}",
+          runtimeExecutable = "node",
+          runtimeArgs = {"run", "start:debug"},
+	  port = 3000
+        },
+        {
+            type = "pwa-node",
+            request = "launch",
+            name = "Debug Jest Tests",
+            -- trace = true, -- include debugger info
+            runtimeExecutable = "node",
+            runtimeArgs = {
+                "./node_modules/jest/bin/jest.js",
+                "--runInBand",
+            },
+            rootPath = "${workspaceFolder}",
+            cwd = "${workspaceFolder}",
+            console = "integratedTerminal",
+            internalConsoleOptions = "neverOpen",
+        },
+    }
+end
   end,
 }
