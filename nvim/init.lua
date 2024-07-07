@@ -614,7 +614,8 @@ require('lazy').setup({
       -- for you, so that they are available from within Neovim.
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
-        'stylua', 'js-debug-adapter' -- Used to format Lua code
+        'stylua',
+        'js-debug-adapter', -- Used to format Lua code
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -633,8 +634,8 @@ require('lazy').setup({
     end,
   },
   {
-    "pmizio/typescript-tools.nvim",
-    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+    'pmizio/typescript-tools.nvim',
+    dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
     opts = {},
   },
   { -- Autoformat
@@ -669,7 +670,7 @@ require('lazy').setup({
         --
         -- You can use a sub-list to tell conform to run *until* a formatter
         -- is found.
-        -- javascript = { { "prettierd", "prettier" } },
+        javascript = { { 'prettierd', 'prettier' } },
       },
     },
   },
@@ -807,7 +808,8 @@ require('lazy').setup({
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
 
   { -- Collection of various small independent plugins/modules
-    'echasnovski/mini.nvim', version = '*',
+    'echasnovski/mini.nvim',
+    version = '*',
     config = function()
       -- Better Around/Inside textobjects
       --
@@ -827,7 +829,7 @@ require('lazy').setup({
       -- Simple and easy statusline.
       --  You could remove this setup call if you don't like it,
       --  and try some other statusline plugin
-      local statusline = require('mini.statusline')
+      local statusline = require 'mini.statusline'
       -- set use_icons to true if you have a Nerd Font
       -- statusline.setup { use_icons = vim.g.have_nerd_font }
 
