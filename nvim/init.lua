@@ -102,7 +102,7 @@ vim.g.have_nerd_font = false
 vim.opt.number = true
 -- You can also add relative line numbers, to help with jumping.
 --  Experiment for yourself to see if you like it!
--- vim.opt.relativenumber = true
+vim.opt.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = 'a'
@@ -564,6 +564,7 @@ require('lazy').setup({
       --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
+      local util = require 'lspconfig.util'
       local servers = {
         -- clangd = {},
         gopls = {},
@@ -599,6 +600,19 @@ require('lazy').setup({
               -- diagnostics = { disable = { 'missing-fields' } },
             },
           },
+        },
+        apex_ls = {
+          -- apex_jar_path = '/home/quang/works/self/projects/dotfiles/apex-jorje-lsp.jar',
+          apex_enable_semantic_errors = false, -- Whether to allow Apex Language Server to surface semantic errors
+          apex_enable_completion_statistics = false, -- Whether to allow Apex Language Server to collect telemetry on code completion usage
+          filetypes = {
+            'apexcode',
+            'apex',
+            'cls',
+            'trigger',
+          },
+          -- root_dir = util.root_pattern 'sfdx-project.json',
+          settings = {},
         },
       }
 
@@ -849,7 +863,7 @@ require('lazy').setup({
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
     opts = {
-      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'vim', 'vimdoc', 'rust', 'go', 'typescript' },
+      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'vim', 'vimdoc', 'rust', 'go', 'typescript', 'java', 'apex' },
       -- Autoinstall languages that are not installed
       auto_install = true,
       highlight = {
