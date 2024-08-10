@@ -161,7 +161,7 @@ vim.bo.softtabstop = 2
 
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
--- vim.api.nvim_set_keymap('i', 'jk', '<Esc>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('i', 'jk', '<Esc>', { noremap = true, silent = true })
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
@@ -609,6 +609,19 @@ require('lazy').setup({
         },
         --
 
+        tailwindcss = {
+          settings = {
+            -- tailwindCSS = {
+            --   classAttributes = { 'class', 'className', 'class:list', 'classList', 'ngClass', '.*Styles*' },
+            --   suggestions = false,
+            --   experimental = { -- Correctly set nested table for experimental settings
+            --     classRegex = { "tw\\('([^']*)'\\)" }, -- Again, use curly braces for the list
+            --   },
+            -- },
+          },
+        },
+
+        --
         lua_ls = {
           -- cmd = {...},
           -- filetypes = { ...},
@@ -651,7 +664,6 @@ require('lazy').setup({
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         'stylua',
-        'js-debug-adapter', -- Used to format Lua code
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -673,6 +685,11 @@ require('lazy').setup({
     'pmizio/typescript-tools.nvim',
     dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
     opts = {},
+  },
+  {
+    'luckasRanarison/tailwind-tools.nvim',
+    dependencies = { 'nvim-treesitter/nvim-treesitter' },
+    opts = {}, -- your configuration
   },
   { -- Autoformat
     'stevearc/conform.nvim',
@@ -778,7 +795,7 @@ require('lazy').setup({
           -- Accept ([y]es) the completion.
           --  This will auto-import if your LSP supports it.
           --  This will expand snippets if the LSP sent a snippet.
-          ['<Tab>'] = cmp.mapping.confirm { select = true },
+          ['<CR>'] = cmp.mapping.confirm { select = true },
 
           -- If you prefer more traditional completion keymaps,
           -- you can uncomment the following lines
