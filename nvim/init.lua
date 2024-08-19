@@ -691,6 +691,12 @@ require('lazy').setup({
     dependencies = { 'nvim-treesitter/nvim-treesitter' },
     opts = {}, -- your configuration
   },
+  {
+    'nvim-ts-autotag',
+    dependencies = { 'nvim-treesitter/nvim-treesitter' },
+    opts = {}, -- your configuration
+  },
+
   { -- Autoformat
     'stevearc/conform.nvim',
     lazy = false,
