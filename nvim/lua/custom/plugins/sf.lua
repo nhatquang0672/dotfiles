@@ -21,10 +21,10 @@ return {
       end
 
       -- vim.keymap.set('n', '<leader>es', Sf.set_target_org, { desc = 'olala' })
-      nmap('<leader>qs', Sf.set_target_org, 'set target_org')
+      nmap('<leader>ls', Sf.set_target_org, 'set target_org')
       -- Apply keymaps if filetype is in hotkeys_in_filetypes
       if vim.tbl_contains(vim.g.sf.hotkeys_in_filetypes, vim.bo.filetype) then
-        nmap('<leader>qd', Sf.diff_in_target_org, 'diff in target_org')
+        nmap('<leader>ld', Sf.diff_in_target_org, 'diff in target_org')
       end
     end
     -- Set keymaps after buffer is read and filetype is set
