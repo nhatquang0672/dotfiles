@@ -957,8 +957,15 @@ require('lazy').setup({
       -- default behavior. For example, here we set the section for
       -- cursor location to LINE:COLUMN
       ---@diagnostic disable-next-line: duplicate-set-field
-      statusline.section_location = function()
-        return '%2l:%-2v'
+
+      local Sf = require 'sf'
+      statusline.section_lsp = function()
+        local success, target_org = pcall(Sf.get_target_org)
+        if success and target_org then
+          return target_org
+        else
+          return ''
+        end
       end
 
       -- ... and there is more!
