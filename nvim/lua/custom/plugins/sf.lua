@@ -21,7 +21,7 @@ return {
     end
 
     -- vim.keymap.set('n', '<leader>es', Sf.set_target_org, { desc = 'olala' })
-    nmap('<leader>ls', Sf.set_target_org, 'set target_org')
+    nmap('<leader>lss', Sf.set_target_org, 'set target_org')
     nmap('<leader>lo', Sf.org_open, 'open target_org')
     nmap('<leader>lsS', Sf.set_global_target_org, 'set global target_org')
     nmap('<leader>lsf', Sf.fetch_org_list, 'fetch orgs info')
