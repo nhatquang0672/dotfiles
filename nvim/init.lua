@@ -721,6 +721,7 @@ require('lazy').setup({
           -- root_dir = util.root_pattern 'sfdx-project.json',
           settings = {},
         },
+        marksman = {},
       }
 
       -- Ensure the servers and tools above are installed
