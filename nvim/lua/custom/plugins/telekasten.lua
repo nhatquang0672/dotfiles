@@ -3,7 +3,12 @@ return {
     'renerocksai/telekasten.nvim',
     dependencies = {
       'nvim-telescope/telescope.nvim',
-      'renerocksai/calendar-vim',
+      {
+        'renerocksai/calendar-vim',
+        init = function()
+          vim.g.calendar_no_mappings = 1
+        end,
+      },
     },
     config = function()
       require('telekasten').setup {
