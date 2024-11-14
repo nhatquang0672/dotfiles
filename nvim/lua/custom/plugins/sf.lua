@@ -26,7 +26,7 @@ return {
     nmap('<leader>lsS', Sf.set_global_target_org, 'set global target_org')
     nmap('<leader>lsf', Sf.fetch_org_list, 'fetch orgs info')
     nmap('<leader>lmtl', Sf.list_md_type_to_retrieve, 'metadata-type listing')
-    nmap('<leader>l<leader>l', Sf.toggle_term, 'terminal toggle')
+    nmap('<leader>ll', Sf.toggle_term, 'terminal toggle')
 
     nmap('<leader>ld', Sf.diff_in_target_org, 'diff in target_org')
     nmap('<leader>lp', Sf.save_and_push, 'push current file')
