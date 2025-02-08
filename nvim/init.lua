@@ -347,6 +347,7 @@ require('lazy').setup({
       -- Document existing key chains
       require('which-key').add {
         { '<leader>c', group = '[C]ode' },
+        { '<leader>p', group = 'Codecom[P]anion' },
         { '<leader>d', group = '[D]ocument' },
         { '<leader>r', group = '[R]ename' },
         { '<leader>s', group = '[S]earch' },
@@ -900,11 +901,16 @@ require('lazy').setup({
           --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
         },
         sources = {
+          per_filetype = {
+            codecompanion = { 'codecompanion' },
+          },
           {
             name = 'lazydev',
             -- set group index to 0 to skip loading LuaLS completions as lazydev recommends it
             group_index = 0,
           },
+          { name = 'copilot' },
+          { name = 'codecompanion' },
           { name = 'nvim_lsp' },
           { name = 'luasnip' },
           { name = 'path' },
