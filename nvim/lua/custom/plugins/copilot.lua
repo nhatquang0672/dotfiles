@@ -41,6 +41,7 @@ return {
       end
 
       nmap('<leader>pc', cc.chat, 'chat to llm')
+      nmap('<leader>pa', cc.actions, 'codecompanion actions')
     end,
   },
 }
