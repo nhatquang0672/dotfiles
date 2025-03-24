@@ -16,32 +16,46 @@ return {
 
     -- Required dependency for nvim-dap-ui
     'nvim-neotest/nvim-nio',
-
-    -- Installs the debug adapters for you
+    --
+    -- -- Installs the debug adapters for you
     'williamboman/mason.nvim',
     'jay-babu/mason-nvim-dap.nvim',
-
-    -- Add your own debuggers here
-    'leoluz/nvim-dap-go',
+    --
+    -- -- Add your own debuggers here
+    -- 'leoluz/nvim-dap-go',
   },
   config = function()
     local dap = require 'dap'
     local dapui = require 'dapui'
-
+    require('mason').setup()
     require('mason-nvim-dap').setup {
-      -- Makes a best effort to setup the various debuggers with
-      -- reasonable debug configurations
+      ensure_installed = { 'js-debug-adapter' },
       automatic_installation = true,
+    }
+    vim.notify('Workspace Folder: ' .. vim.fn.getcwd())
 
-      -- You can provide additional configuration to the handlers,
-      -- see mason-nvim-dap README for more information
-      handlers = {},
-
-      -- You'll need to check that you have the required things installed
-      -- online, please don't ask me how to install them :)
-      ensure_installed = {
-        -- Update this to ensure that you have the debuggers for the langs you want
-        'delve', 'js-debug-adapter'
+    -- TypeScript (Node.js) configuration
+    dap.adapters.node = {
+      type = 'executable',
+      command = 'node',
+      args = { os.getenv 'HOME' .. '/.local/share/nvim/mason/packages/js-debug-adapter/js-debug/src/dapDebugServer.js', '9229' },
+    }
+    dap.configurations.typescript = {
+      {
+        name = 'Launch testtt new',
+        type = 'node',
+        request = 'launch',
+        -- program = '${workspaceFolder/src/main.ts}',
+        -- cwd = vim.fn.getcwd(),
+        -- sourceMaps = true,
+        -- program = '${workspaceFolder}/node_modules/.bin/ts-node',
+        -- args = { '${workspaceFolder}/src/main.ts' },
+        runtimeExecutable = 'yarn',
+        runtimeArgs = { 'start:debug' },
+        cwd = vim.fn.getcwd(),
+        sourceMaps = true,
+        protocol = 'inspector',
+        console = 'integratedTerminal',
       },
     }
 
@@ -85,57 +99,12 @@ return {
     dap.listeners.before.event_exited['dapui_config'] = dapui.close
 
     -- Install golang specific config
-    require('dap-go').setup {
-      delve = {
-        -- On Windows delve must be run attached or it crashes.
-        -- See https://github.com/leoluz/nvim-dap-go/blob/main/README.md#configuring
-        detached = vim.fn.has 'win32' == 0,
-      },
-    }
-dap.adapters["pwa-node"] = {
-    type = "server",
-    host = "localhost",
-    port = "${port}",
-    executable = {
-        command = vim.fn.exepath "js-debug-adapter",
-        args = { "${port}" },
-    },
-}
-
-for _, language in ipairs { "typescript", "javascript" } do
-    dap.configurations[language] = {
-        {
-            type = "pwa-node",
-            request = "launch",
-            name = "[node] Launch file",
-            program = "${file}",
-            cwd = "${workspaceFolder}",
-        },
-        {
-            type = "pwa-node",
-            request = "launch",
-            name = "[node] Launch debug shop service",
-            cwd = "${workspaceFolder}",
-          runtimeExecutable = "node",
-          runtimeArgs = {"run", "start:debug"},
-	  port = 3000
-        },
-        {
-            type = "pwa-node",
-            request = "launch",
-            name = "Debug Jest Tests",
-            -- trace = true, -- include debugger info
-            runtimeExecutable = "node",
-            runtimeArgs = {
-                "./node_modules/jest/bin/jest.js",
-                "--runInBand",
-            },
-            rootPath = "${workspaceFolder}",
-            cwd = "${workspaceFolder}",
-            console = "integratedTerminal",
-            internalConsoleOptions = "neverOpen",
-        },
-    }
-end
+    -- require('dap-go').setup {
+    --   delve = {
+    --     -- On Windows delve must be run attached or it crashes.
+    --     -- See https://github.com/leoluz/nvim-dap-go/blob/main/README.md#configuring
+    --     detached = vim.fn.has 'win32' == 0,
+    --   },
+    -- }
   end,
 }
