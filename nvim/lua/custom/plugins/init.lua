@@ -24,16 +24,6 @@ return {
       }
     end,
   },
-  -- {
-  --   'HallerPatrick/py_lsp.nvim',
-  --   -- Support for versioning
-  --   -- tag = "v0.0.1"
-  --
-  --   opts = {
-  --     host_python = '/Users/quangtran/works/medis/projects/medis_doc_synth/.venv/bin/python',
-  --     default_venv_name = '.venv', -- For local venv
-  --   }, -- your configuration
-  -- },
   {
     'windwp/nvim-ts-autotag',
     dependencies = { 'nvim-treesitter/nvim-treesitter' },
