@@ -6,6 +6,8 @@ return {
   {
     'lewis6991/gitsigns.nvim',
     opts = {
+
+      -- word_diff = true, -- Toggle with `:Gitsigns toggle_word_diff`
       on_attach = function(bufnr)
         local gitsigns = require 'gitsigns'
 

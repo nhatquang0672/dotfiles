@@ -14,6 +14,27 @@ return {
     opts = {}, -- your configuration
   },
   {
+    'AckslD/swenv.nvim',
+    config = function()
+      require('swenv').setup {
+        -- attempt to auto create and set a venv from dependencies
+        auto_create_venv = true,
+        -- name of venv directory to create if using pip
+        auto_create_venv_dir = '.venv',
+      }
+    end,
+  },
+  -- {
+  --   'HallerPatrick/py_lsp.nvim',
+  --   -- Support for versioning
+  --   -- tag = "v0.0.1"
+  --
+  --   opts = {
+  --     host_python = '/Users/quangtran/works/medis/projects/medis_doc_synth/.venv/bin/python',
+  --     default_venv_name = '.venv', -- For local venv
+  --   }, -- your configuration
+  -- },
+  {
     'windwp/nvim-ts-autotag',
     dependencies = { 'nvim-treesitter/nvim-treesitter' },
     opts = {}, -- your configuration
