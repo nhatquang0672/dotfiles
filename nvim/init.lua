@@ -666,10 +666,26 @@ require('lazy').setup({
       local util = require 'lspconfig.util'
       local servers = {
         -- clangd = {},
-        gopls = {},
+        -- gopls = {},
         -- pyright = {},
-        rust_analyzer = {},
-        pylsp = {},
+        -- rust_analyzer = {},
+        pylsp = {
+          settings = {
+            pylsp = {
+              plugins = {
+                pycodestyle = {
+                  ignore = { 'W391' },
+                  maxLineLength = 100,
+                },
+                rope_autoimport = {
+                  enabled = true,
+                },
+              },
+            },
+          },
+        },
+        harper_ls = {},
+        -- jdtls = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
         -- Some languages (like typescript) have entire language plugins that can be useful:
@@ -686,17 +702,17 @@ require('lazy').setup({
         -- },
         --
 
-        tailwindcss = {
-          settings = {
-            -- tailwindCSS = {
-            --   classAttributes = { 'class', 'className', 'class:list', 'classList', 'ngClass', '.*Styles*' },
-            --   suggestions = false,
-            --   experimental = { -- Correctly set nested table for experimental settings
-            --     classRegex = { "tw\\('([^']*)'\\)" }, -- Again, use curly braces for the list
-            --   },
-            -- },
-          },
-        },
+        -- tailwindcss = {
+        --   settings = {
+        --     -- tailwindCSS = {
+        --     --   classAttributes = { 'class', 'className', 'class:list', 'classList', 'ngClass', '.*Styles*' },
+        --     --   suggestions = false,
+        --     --   experimental = { -- Correctly set nested table for experimental settings
+        --     --     classRegex = { "tw\\('([^']*)'\\)" }, -- Again, use curly braces for the list
+        --     --   },
+        --     -- },
+        --   },
+        -- },
 
         --
         lua_ls = {
