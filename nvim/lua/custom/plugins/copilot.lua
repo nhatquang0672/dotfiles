@@ -9,6 +9,8 @@ return {
   },
   {
     'zbirenbaum/copilot-cmp',
+    event = { 'InsertEnter', 'LspAttach' },
+    -- event = {},
     fix_pairs = true,
     config = function()
       require('copilot_cmp').setup()

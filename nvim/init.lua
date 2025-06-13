@@ -677,6 +677,9 @@ require('lazy').setup({
                   ignore = { 'W391' },
                   maxLineLength = 100,
                 },
+                autopep8 = {
+                  enabled = true,
+                },
                 rope_autoimport = {
                   enabled = true,
                 },
