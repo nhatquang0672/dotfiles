@@ -687,7 +687,7 @@ require('lazy').setup({
             },
           },
         },
-        harper_ls = {},
+        -- harper_ls = {},
         -- jdtls = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
@@ -718,34 +718,34 @@ require('lazy').setup({
         -- },
 
         --
-        lua_ls = {
-          -- cmd = {...},
-          -- filetypes = { ...},
-          -- capabilities = {},
-          settings = {
-            Lua = {
-              completion = {
-                callSnippet = 'Replace',
-              },
-              -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-              -- diagnostics = { disable = { 'missing-fields' } },
-            },
-          },
-        },
-        apex_ls = {
-          -- apex_jar_path = '/home/quang/works/self/projects/dotfiles/apex-jorje-lsp.jar',
-          -- apex_enable_semantic_errors = true, -- Whether to allow Apex Language Server to surface semantic errors
-          apex_enable_completion_statistics = true, -- Whether to allow Apex Language Server to collect telemetry on code completion usage
-          filetypes = {
-            'apexcode',
-            'apex',
-            'cls',
-            'trigger',
-          },
-          -- root_dir = util.root_pattern 'sfdx-project.json',
-          settings = {},
-        },
-        marksman = {},
+        -- lua_ls = {
+        --   -- cmd = {...},
+        --   -- filetypes = { ...},
+        --   -- capabilities = {},
+        --   settings = {
+        --     Lua = {
+        --       completion = {
+        --         callSnippet = 'Replace',
+        --       },
+        --       -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
+        --       -- diagnostics = { disable = { 'missing-fields' } },
+        --     },
+        --   },
+        -- },
+        -- apex_ls = {
+        --   -- apex_jar_path = '/home/quang/works/self/projects/dotfiles/apex-jorje-lsp.jar',
+        --   -- apex_enable_semantic_errors = true, -- Whether to allow Apex Language Server to surface semantic errors
+        --   apex_enable_completion_statistics = true, -- Whether to allow Apex Language Server to collect telemetry on code completion usage
+        --   filetypes = {
+        --     'apexcode',
+        --     'apex',
+        --     'cls',
+        --     'trigger',
+        --   },
+        --   -- root_dir = util.root_pattern 'sfdx-project.json',
+        --   settings = {},
+        -- },
+        -- marksman = {},
       }
 
       -- Ensure the servers and tools above are installed
