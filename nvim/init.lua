@@ -669,26 +669,27 @@ require('lazy').setup({
         -- gopls = {},
         -- pyright = {},
         -- rust_analyzer = {},
-        pylsp = {
-          settings = {
-            pylsp = {
-              plugins = {
-                pycodestyle = {
-                  ignore = { 'W391' },
-                  maxLineLength = 100,
-                },
-                autopep8 = {
-                  enabled = true,
-                },
-                rope_autoimport = {
-                  enabled = true,
-                },
-              },
-            },
-          },
-        },
+        -- pylsp = {
+        --   settings = {
+        --     pylsp = {
+        --       plugins = {
+        --         pycodestyle = {
+        --           ignore = { 'W391' },
+        --           maxLineLength = 100,
+        --         },
+        --         autopep8 = {
+        --           enabled = false,
+        --         },
+        --         rope_autoimport = {
+        --           enabled = true,
+        --         },
+        --       },
+        --     },
+        --   },
+        -- },
         -- harper_ls = {},
-        -- jdtls = {},
+        jdtls = {},
+        lua_ls = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
         -- Some languages (like typescript) have entire language plugins that can be useful:
@@ -732,18 +733,22 @@ require('lazy').setup({
         --     },
         --   },
         -- },
+        -- filetypes = { 'apex' },
+        -- root_dir = lspconfig.util.root_pattern('sfdx-project.json', '.git'),
         -- apex_ls = {
-        --   -- apex_jar_path = '/home/quang/works/self/projects/dotfiles/apex-jorje-lsp.jar',
-        --   -- apex_enable_semantic_errors = true, -- Whether to allow Apex Language Server to surface semantic errors
-        --   apex_enable_completion_statistics = true, -- Whether to allow Apex Language Server to collect telemetry on code completion usage
-        --   filetypes = {
-        --     'apexcode',
-        --     'apex',
-        --     'cls',
-        --     'trigger',
-        --   },
-        --   -- root_dir = util.root_pattern 'sfdx-project.json',
-        --   settings = {},
+        --   apex_jar_path = '/Users/quangtran/.local/share/nvim/mason/packages/apex-language-server/extension/dist/apex-jorje-lsp.jar',
+        --   apex_enable_semantic_errors = true, -- Whether to allow Apex Language Server to surface semantic errors
+        --   --
+        --   -- cmd = { 'apex-language-server', '--stdio' },
+        --   -- apex_enable_completion_statistics = true, -- Whether to allow Apex Language Server to collect telemetry on code completion usage
+        --   -- filetypes = {
+        --   --   'apexcode',
+        --   --   'apex',
+        --   --   'cls',
+        --   --   'trigger',
+        --   -- },
+        --   -- -- root_dir = util.root_pattern 'sfdx-project.json',
+        --   -- settings = {},
         -- },
         -- marksman = {},
       }
@@ -754,6 +759,30 @@ require('lazy').setup({
       --    :Mason
       --
       --  You can press `g?` for help in this menu.
+      -- require('lspconfig').apex_ls.setup {
+      --   apex_jar_path = '/Users/quangtran/.local/share/nvim/mason/packages/apex-language-server/extension/dist/apex-jorje-lsp.jar',
+      --   apex_enable_semantic_errors = true,
+      --   apex_enable_completion_statistics = true, --on code completion usage
+      -- }
+      --
+      -- vim.lsp.enable 'apex_ls'
+
+      require('lspconfig').apex_ls.setup {
+        cmd = {
+          'java',
+          '-jar',
+          '/Users/quangtran/.local/share/nvim/mason/packages/apex-language-server/extension/dist/apex-jorje-lsp.jar',
+          '--stdio',
+        },
+        filetypes = { 'apex' },
+        -- root_dir = lspconfig.util.root_pattern('sfdx-project.json', '.git'),
+        settings = {
+          apex = {
+            apexEnableSemanticErrors = true,
+            apexEnableCompletionStatistics = true,
+          },
+        },
+      }
       require('mason').setup()
 
       -- You can add other tools here that you want Mason to install
@@ -808,7 +837,7 @@ require('lazy').setup({
       formatters_by_ft = {
         lua = { 'stylua' },
         -- Conform can also run multiple formatters sequentially
-        python = { 'isort', 'black' },
+        -- python = { 'isort', 'black' },
         --
         -- You can use 'stop_after_first' to run the first available formatter from the list
         javascript = { 'prettierd', 'prettier', stop_after_first = true },
