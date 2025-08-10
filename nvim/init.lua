@@ -241,6 +241,8 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
+vim.lsp.enable 'dartls'
+
 -- [[ Configure and install plugins ]]
 --
 --  To check the current status of your plugins, run
