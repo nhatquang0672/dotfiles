@@ -19,6 +19,7 @@ return {
         template_new_daily = vim.fn.expand '$HOME/works/self/projects/zettelkasten/templates/daily.md', -- template for new daily notes
         new_note_filename = 'uuid-title',
         filename_space_subst = '-',
+        auto_set_filetype = false,
       }
       -- Define a local variable for telekasten
       local telekasten = require 'telekasten'

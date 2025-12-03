@@ -157,10 +157,10 @@ vim.opt.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 
--- vim.opt.tabstop = 2
--- vim.opt.shiftwidth = 2
-vim.opt.tabstop = 4
-vim.opt.shiftwidth = 4
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+-- vim.opt.tabstop = 4
+-- vim.opt.shiftwidth = 4
 vim.bo.softtabstop = -1
 vim.opt.expandtab = true
 -- vim.o.smartindent = true
@@ -671,6 +671,7 @@ require('lazy').setup({
         -- gopls = {},
         -- pyright = {},
         -- rust_analyzer = {},
+        pylsp = {},
         -- pylsp = {
         --   settings = {
         --     pylsp = {
@@ -689,7 +690,26 @@ require('lazy').setup({
         --     },
         --   },
         -- },
-        -- harper_ls = {},
+        harper_ls = {
+          enabled = true,
+          settings = {
+            ['harper-ls'] = {
+              filetypes = { 'markdown', 'text' },
+              -- userDictPath = '~/github/dotfiles-latest/neovim/neobean/spell/en.utf-8.add',
+              linters = {
+                ToDoHyphen = false,
+                -- SentenceCapitalization = true,
+                -- SpellCheck = true,
+              },
+              isolateEnglish = true,
+              -- markdown = {
+              --   -- [ignores this part]()
+              --   -- [[ also ignores my marksman links ]]
+              --   IgnoreLinkTitle = true,
+              -- },
+            },
+          },
+        },
         jdtls = {},
         lua_ls = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
@@ -842,8 +862,8 @@ require('lazy').setup({
         -- python = { 'isort', 'black' },
         --
         -- You can use 'stop_after_first' to run the first available formatter from the list
-        javascript = { 'prettierd', 'prettier', stop_after_first = true },
-        typescript = { 'prettierd', 'prettier', stop_after_first = true },
+        -- javascript = { 'prettierd', 'prettier', stop_after_first = true },
+        -- typescript = { 'prettierd', 'prettier', stop_after_first = true },
       },
     },
   },
@@ -889,6 +909,7 @@ require('lazy').setup({
       local cmp = require 'cmp'
       local luasnip = require 'luasnip'
       luasnip.config.setup {}
+      -- luasnip.filetype_extend('telekasten', { 'markdown' })
 
       cmp.setup {
         snippet = {
