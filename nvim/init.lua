@@ -157,10 +157,10 @@ vim.opt.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 
-vim.opt.tabstop = 2
-vim.opt.shiftwidth = 2
--- vim.opt.tabstop = 4
--- vim.opt.shiftwidth = 4
+-- vim.opt.tabstop = 2
+-- vim.opt.shiftwidth = 2
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
 vim.bo.softtabstop = -1
 vim.opt.expandtab = true
 -- vim.o.smartindent = true
@@ -711,6 +711,7 @@ require('lazy').setup({
           },
         },
         jdtls = {},
+        clangd = {},
         -- lua_ls = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
@@ -805,6 +806,39 @@ require('lazy').setup({
           },
         },
       }
+      -- require('lspconfig').sourcekit.setup(
+      --     {
+      --       cmd = { 'sourcekit-lsp' },
+      --       filetypes = { 'swift', 'objc', 'objcpp', 'c', 'cpp' },
+      --       root_dir = function(bufnr, on_dir)
+      --         local filename = vim.api.nvim_buf_get_name(bufnr)
+      --         on_dir(
+      --           util.root_pattern('buildServer.json', '.bsp')(filename)
+      --             or util.root_pattern('*.xcodeproj', '*.xcworkspace')(filename)
+      --             -- better to keep it at the end, because some modularized apps contain multiple Package.swift files
+      --             or util.root_pattern('compile_commands.json', 'Package.swift')(filename)
+      --             or vim.fs.dirname(vim.fs.find('.git', { path = filename, upward = true })[1])
+      --         )
+      --       end,
+      --       get_language_id = function(_, ftype)
+      --         local t = { objc = 'objective-c', objcpp = 'objective-cpp' }
+      --         return t[ftype] or ftype
+      --       end,
+      --       capabilities = {
+      --         workspace = {
+      --           didChangeWatchedFiles = {
+      --             dynamicRegistration = true,
+      --           },
+      --         },
+      --         textDocument = {
+      --           diagnostic = {
+      --             dynamicRegistration = true,
+      --             relatedDocumentSupport = true,
+      --           },
+      --         },
+      --       },
+      --     })
+
       require('mason').setup()
 
       -- You can add other tools here that you want Mason to install
